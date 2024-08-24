@@ -25,7 +25,7 @@ impl<T> SpinLock<T> {
         Guard { lock: self }
     }
     pub fn unlock(&self) {
-        self.locked.swap(false, Release);
+        drop(self);
     }
 }
 impl<T> Deref for Guard<'_, T> {
